@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import lxml
 
-headers ={
+headers = {
     'Connection': 'keep-alive',
     'Cache-Control': 'max-age=0',
     'Upgrade-Insecure-Requests': '1',
@@ -13,30 +13,23 @@ headers ={
     'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4'
 }
 
-year = 2022
-url = f"https://www.gismeteo.ru/diary/4618/{year}/{month}/"
+for year in range(1997, 2023):
+    print(f"Год: {year}")
+    for month in range(1, 13):
+        print(f"Месяц: {month}")
+        print("дата температура давление данные о ветре")
+        url = f"https://www.gismeteo.ru/diary/4618/{year}/{month}/"
 
-response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers)
 
-soup = BeautifulSoup(response.text, "lxml")  # html.parser
+        soup = BeautifulSoup(response.text, "lxml")  # html.parser
 
-data = soup.find_all("tr", align="center")
+        data = soup.find_all("tr", align="center")
 
-for mount in range(1, 13):
-    print(f"Месяц: {mount}")
-    print("дата температура давление данные о ветре")
-    url = f"https://www.gismeteo.ru/diary/4618/{year}/{mount}/"
+        for el in data:
+            day = el.find("td", class_="first").text
+            temp = el.find("td", class_="first_in_group").text
+            davl = el.find("td", class_="").text
+            wind = el.find("span").text.replace(" ", "")
 
-    response = requests.get(url, headers=headers)
-
-    soup = BeautifulSoup(response.text, "lxml")  # html.parser
-
-    data = soup.find_all("tr", align="center")
-
-    for el in data:
-        day = el.find("td", class_="first").text
-        temp = el.find("td", class_="first_in_group").text
-        davl = el.find("td", class_="").text
-        wind = el.find("span").text.replace(" ", "")
-
-        print(day, temp, davl, wind)
+            print(day, temp, davl, wind)
