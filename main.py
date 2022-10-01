@@ -13,7 +13,7 @@ headers = {
     'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4'
 }
 
-for year in range(1997, 2023):
+for year in range(2008, 2023):
     print(f"Год: {year}")
     for month in range(1, 13):
         print(f"Месяц: {month}")
@@ -29,7 +29,7 @@ for year in range(1997, 2023):
         for el in data:
             day = el.find("td", class_="first").text
             temp = el.find("td", class_="first_in_group").text
-            davl = el.find("td", class_="").text
+            pressure = el.find("td", class_="").text
             wind = el.find("span").text.replace(" ", "")
 
-            print(day, temp, davl, wind)
+            print(day, temp, pressure, wind)
