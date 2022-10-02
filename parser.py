@@ -1,5 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
+import pandas as pd
+import csv
+
+FILENAME = "dataset.csv"
 
 headers = {
     'Connection': 'keep-alive',
@@ -51,10 +55,19 @@ def add_wthr_info_to_csv(from_year=2008, to_year=2022, from_month=1, to_month=12
         print("Некорректный ввод месяца")
         return
     for year in range(from_year, to_year + 1):
-        print(f"Год: {year}")
+        with open(FILENAME, "a", newline="") as file:
+            all_data = [f"\n\nГод {year}"]
+            writer = csv.writer(file)
+            writer.writerow(all_data)
         for month in range(from_month, to_month + 1):
-            print(f"Месяц: {month}")
-            print("дата температура давление данные о ветре")
+            with open(FILENAME, "a", newline="") as file:
+                all_data = [f"\nМесяц №{month}"]
+                writer = csv.writer(file)
+                writer.writerow(all_data)
+            with open(FILENAME, "a", newline="") as file:
+                all_data = ["дата", " темп", " давл", " ветер"]
+                writer = csv.writer(file)
+                writer.writerow(all_data)
             url = f"https://www.gismeteo.ru/diary/4618/{year}/{month}/"
 
             response = requests.get(url, headers=headers)
@@ -69,4 +82,7 @@ def add_wthr_info_to_csv(from_year=2008, to_year=2022, from_month=1, to_month=12
                 pressure = el.find("td", class_="").text
                 wind = el.find("span").text.replace(" ", "")
 
-                print(day, temp, pressure, wind)
+                with open(FILENAME, "a", newline="") as file:
+                    all_data = [day, "   "+temp, "   "+pressure, "   "+wind]
+                    writer = csv.writer(file)
+                    writer.writerow(all_data)
