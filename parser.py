@@ -56,12 +56,12 @@ def add_wthr_info_to_csv(from_year=2008, to_year=2022, from_month=1, to_month=12
         return
     for year in range(from_year, to_year + 1):
         with open(FILENAME, "a", newline="") as file:
-            all_data = [f"\n\nГод {year}"]
+            all_data = [f"Год {year}"]
             writer = csv.writer(file)
             writer.writerow(all_data)
         for month in range(from_month, to_month + 1):
             with open(FILENAME, "a", newline="") as file:
-                all_data = [f"\nМесяц №{month}"]
+                all_data = [f"Месяц №{month}"]
                 writer = csv.writer(file)
                 writer.writerow(all_data)
             with open(FILENAME, "a", newline="") as file:
