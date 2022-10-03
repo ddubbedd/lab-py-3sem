@@ -1,6 +1,7 @@
-from bs4 import BeautifulSoup
 import requests
 import csv
+
+from bs4 import BeautifulSoup
 
 FILENAME = "dataset.csv"
 
@@ -82,6 +83,6 @@ def add_wthr_info_to_csv(from_year=2008, to_year=2022, from_month=1, to_month=12
                 wind = el.find("span").text.replace(" ", "")
 
                 with open(FILENAME, "a", newline="") as file:
-                    all_data = [day, "   "+temp, "   "+pressure, "   "+wind]
+                    all_data = [day, "   " + temp, "   " + pressure, "   " + wind]
                     writer = csv.writer(file)
                     writer.writerow(all_data)
