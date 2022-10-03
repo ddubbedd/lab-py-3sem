@@ -1,7 +1,8 @@
+from bs4 import BeautifulSoup
+
 import requests
 import csv
 
-from bs4 import BeautifulSoup
 
 FILENAME = "dataset.csv"
 
@@ -18,7 +19,8 @@ headers = {
 }
 
 
-def print_weather_info(from_year=2008, to_year=2022, from_month=1, to_month=12):
+def print_weather_info(from_year=2008, to_year=2022,
+                       from_month=1, to_month=12):
     if from_year < 2008 or to_year > 2022:
         print("Информации за данный год нет")
         return
@@ -47,7 +49,8 @@ def print_weather_info(from_year=2008, to_year=2022, from_month=1, to_month=12):
                 print(day, temp, pressure, wind)
 
 
-def add_wthr_info_to_csv(from_year=2008, to_year=2022, from_month=1, to_month=12):
+def add_wthr_info_to_csv(from_year=2008, to_year=2022,
+                         from_month=1, to_month=12):
     if from_year < 2008 or to_year > 2022:
         print("Информации за данный год нет")
         return
@@ -83,6 +86,10 @@ def add_wthr_info_to_csv(from_year=2008, to_year=2022, from_month=1, to_month=12
                 wind = el.find("span").text.replace(" ", "")
 
                 with open(FILENAME, "a", newline="") as file:
-                    all_data = [day, "   " + temp, "   " + pressure, "   " + wind]
+                    all_data = [
+                        day,
+                        "   " + temp,
+                        "   " + pressure,
+                        "   " + wind]
                     writer = csv.writer(file)
                     writer.writerow(all_data)
