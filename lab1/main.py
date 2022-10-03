@@ -1,3 +1,3 @@
 from parser import *
 
-print_weather_info()
+add_wthr_info_to_csv()

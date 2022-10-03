@@ -4,7 +4,7 @@ import requests
 import csv
 
 
-FILENAME = "dataset.csv"
+FILENAME = "lab1/dataset.csv"
 
 headers = {
     'Connection': 'keep-alive',
@@ -59,12 +59,12 @@ def add_wthr_info_to_csv(from_year=2008, to_year=2022,
         return
     for year in range(from_year, to_year + 1):
         with open(FILENAME, "a", newline="") as file:
-            all_data = [f"Год {year}"]
+            all_data = [f"{year}"]
             writer = csv.writer(file)
             writer.writerow(all_data)
         for month in range(from_month, to_month + 1):
             with open(FILENAME, "a", newline="") as file:
-                all_data = [f"Месяц №{month}"]
+                all_data = [f"{month}"]
                 writer = csv.writer(file)
                 writer.writerow(all_data)
             with open(FILENAME, "a", newline="") as file:
