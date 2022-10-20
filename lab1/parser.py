@@ -58,19 +58,7 @@ def add_wthr_info_to_csv(from_year=2008, to_year=2022,
         print("Некорректный ввод месяца")
         return
     for year in range(from_year, to_year + 1):
-        with open(FILENAME, "a", newline="") as file:
-            all_data = [f"{year}"]
-            writer = csv.writer(file)
-            writer.writerow(all_data)
         for month in range(from_month, to_month + 1):
-            with open(FILENAME, "a", newline="") as file:
-                all_data = [f"{month}"]
-                writer = csv.writer(file)
-                writer.writerow(all_data)
-            with open(FILENAME, "a", newline="") as file:
-                all_data = ["дата", " темп", " давл", " ветер"]
-                writer = csv.writer(file)
-                writer.writerow(all_data)
             url = f"https://www.gismeteo.ru/diary/4618/{year}/{month}/"
 
             response = requests.get(url, headers=headers)
@@ -80,7 +68,7 @@ def add_wthr_info_to_csv(from_year=2008, to_year=2022,
             data = soup.find_all("tr", align="center")
 
             for el in data:
-                day = el.find("td", class_="first").text
+                day = f"{year}-"+el.find("td", class_="first").text+f"-{month}"
                 temp = el.find("td", class_="first_in_group").text
                 pressure = el.find("td", class_="").text
                 wind = el.find("span").text.replace(" ", "")
