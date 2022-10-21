@@ -76,8 +76,8 @@ def add_wthr_info_to_csv(from_year=2008, to_year=2022,
                 with open(FILENAME, "a", newline="") as file:
                     all_data = [
                         day,
-                        "   " + temp,
-                        "   " + pressure,
-                        "   " + wind]
+                        temp,
+                        pressure,
+                        wind]
                     writer = csv.writer(file)
                     writer.writerow(all_data)
