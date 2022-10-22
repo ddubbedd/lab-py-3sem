@@ -23,6 +23,10 @@ def find_data(year):
 
 
 def write_to_file():
+    with open('dataset.csv', 'r', newline='') as csvfile:
+        file_reader = csv.reader(csvfile)
+        for row in file_reader:
+            a.append(row)
     for i in range(0, len(a)):
         year = a[i][0].split("-")[0]
         with open(f"dataset/{find_data(year)}.csv", "a", newline="") as file:
@@ -30,10 +34,5 @@ def write_to_file():
             writer = csv.writer(file)
             writer.writerow(all_data)
 
-
-with open('dataset.csv', 'r', newline='') as csvfile:
-    file_reader = csv.reader(csvfile)
-    for row in file_reader:
-        a.append(row)
 
 write_to_file()
