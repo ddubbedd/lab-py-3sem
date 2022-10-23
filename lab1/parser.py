@@ -4,7 +4,7 @@ import requests
 import csv
 
 
-FILENAME = "lab1/dataset.csv"
+FILENAME = "lab1/dataset1.csv"
 
 headers = {
     'Connection': 'keep-alive',

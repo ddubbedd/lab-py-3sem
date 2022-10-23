@@ -95,5 +95,5 @@ def find_data4(date):
         return b
 
 
-date = datetime.date(2012, 7, 14)
-print(find_data3(date))
+date = datetime.date(2012, 10, 14)
+print(find_data4(date))
