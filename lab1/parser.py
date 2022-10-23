@@ -68,7 +68,7 @@ def add_wthr_info_to_csv(from_year=2008, to_year=2022,
             data = soup.find_all("tr", align="center")
 
             for el in data:
-                day = f"{year}-"+el.find("td", class_="first").text+f"-{month}"
+                day = f"{year}-"+f"{month}-"+el.find("td", class_="first").text
                 temp = el.find("td", class_="first_in_group").text
                 pressure = el.find("td", class_="").text
                 wind = el.find("span").text.replace(" ", "")
