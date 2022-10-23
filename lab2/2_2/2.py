@@ -4,7 +4,7 @@ import csv
 a = []
 
 
-def find_data(year):
+def find_date(year):
     b = []
     max_date = 0
     min_date = 10 ** 10
@@ -29,7 +29,7 @@ def write_to_file():
             a.append(row)
     for i in range(0, len(a)):
         year = a[i][0].split("-")[0]
-        with open(f"dataset/{find_data(year)}.csv", "a", newline="") as file:
+        with open(f"dataset/{find_date(year)}.csv", "a", newline="") as file:
             all_data = a[i]
             writer = csv.writer(file)
             writer.writerow(all_data)
