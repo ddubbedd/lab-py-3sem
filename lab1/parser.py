@@ -70,10 +70,17 @@ def add_wthr_info_to_csv(from_year=2008, to_year=2022,
             for el in data:
                 day = el.find("td", class_="first").text
                 date = f"{year}-" + f"{month}-" + day
-                if int(month) < 10:
-                    date = f"{year}-"+f"0{month}-"+day
-                if int(day) < 10:
-                    date = f"{year}-" + f"{month}-0" + day
+
+
+                if int(month) < 10 or int(day) < 10:
+                    if int(month) < 10 and int(day) < 10:
+                        date = f"{year}-"+f"0{month}-0"+day
+                    elif int(month) < 10:
+                        date = f"{year}-"+f"0{month}-"+day
+                    elif int(day) < 10:
+                        date = f"{year}-" + f"{month}-0" + day
+
+
                 temp = el.find("td", class_="first_in_group").text
                 pressure = el.find("td", class_="").text
                 wind = el.find("span").text.replace(" ", "")
