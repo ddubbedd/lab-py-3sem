@@ -1,6 +1,7 @@
 import csv
 import datetime
 import os
+from email import generator
 
 list1 = []
 list2 = []
@@ -95,5 +96,22 @@ def find_data4(date):
         return b
 
 
-date = datetime.date(2012, 10, 14)
-print(find_data4(date))
+def next(file_name: str) -> generator:
+    path = os.path.join("", file_name)
+    names_list = os.listdir(path)
+    names_list.append(None)
+    my_generator = (item for item in names_list)
+    for i in my_generator:
+        yield i
+
+
+def run():
+    date = datetime.date(2022, 22, 22)
+    find_data1(date)
+    find_data2(date)
+    find_data3(date)
+    find_data4(date)
+
+
+for i in next("lab2/lab2_4/dataset1/dataset1.csv"):
+    print(i)
