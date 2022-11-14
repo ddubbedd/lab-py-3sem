@@ -6,7 +6,7 @@ import csv
 a = []
 
 
-def find_date(iterator):
+def find_date(iterator: int) -> str:
     first_day = int(a[iterator][0].split('-')[2])
     date = ''
     for i in range(iterator, len(a)):
@@ -16,7 +16,7 @@ def find_date(iterator):
     return date
 
 
-def write_to_file():
+def write_to_file() -> None:
     with open('dataset.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:

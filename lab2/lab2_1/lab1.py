@@ -4,7 +4,7 @@ import csv
 a = []
 
 
-def write_to_file():
+def write_to_file() -> None:
     with open('dataset.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:

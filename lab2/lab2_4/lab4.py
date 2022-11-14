@@ -1,10 +1,19 @@
 import csv
 import datetime
 import os
-from email import generator
+from typing import Optional, List
 
 
-def find_data1(date):
+def next(path_to_csv: str, count: int) -> Optional[List[str]]:
+    with open(path_to_csv + '/dataset.csv', 'r', encoding='utf-8') as csvfile:
+        file_reader = list(csv.reader(csvfile))
+        if file_reader[count] is None:
+            return None
+        else:
+            return file_reader[count]
+
+
+def find_data1(date: datetime.date) -> list:
     list1 = []
     with open('dataset1/dataset1.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
@@ -20,7 +29,7 @@ def find_data1(date):
         return b
 
 
-def find_data2(date):
+def find_data2(date: datetime.date) -> list:
     list1 = []
     list2 = []
     with open('dataset2/X.csv', 'r', newline='') as csvfile:
@@ -41,7 +50,7 @@ def find_data2(date):
         return b
 
 
-def find_data3(date):
+def find_data3(date: datetime.date) -> list:
     list1 = []
     b = []
     filename = ''
@@ -69,7 +78,7 @@ def find_data3(date):
         return b
 
 
-def find_data4(date):
+def find_data4(date: datetime.date):
     list1 = []
     b = []
     filename = ''
@@ -100,21 +109,18 @@ def find_data4(date):
         return b
 
 
-def next(file_name: str) -> generator:
-    path = os.path.join("", file_name)
-    names_list = os.listdir(path)
-    names_list.append(None)
-    my_generator = (item for item in names_list)
-    for i in my_generator:
-        yield i
-
-
-def run():
+def run(path_to_csv: str = os.path.join("/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2")) -> None:
     date = datetime.date(2010, 12, 12)
     print(find_data1(date))
     print(find_data2(date))
     print(find_data3(date))
     print(find_data4(date))
+
+    with open(path_to_csv + '/dataset.csv', 'r', encoding='utf-8') as csvfile:
+        count = 0
+        while count != 50:
+            print(*next(path_to_csv, count))
+            count += 1
 
 
 run()
