@@ -7,6 +7,7 @@ a = []
 
 
 def find_date(iterator: int) -> str:
+    """Эта функция возвращает название файла с датой от первого до последнего числа недели"""
     first_day = int(a[iterator][0].split('-')[2])
     date = ''
     for i in range(iterator, len(a)):
@@ -17,6 +18,7 @@ def find_date(iterator: int) -> str:
 
 
 def write_to_file() -> None:
+    """Эта функция записывает данные в файлы, упорядоченные по неделям"""
     with open('dataset.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:
@@ -31,7 +33,6 @@ def write_to_file() -> None:
         year = int(a[i][0].split('-')[0])
         month = int(a[i][0].split('-')[1])
         day = int(a[i][0].split('-')[2])
-        week = 1
         if day > (first_day + 6):
             first_day = int(a[i][0].split('-')[2])
             file_name = find_date(i)

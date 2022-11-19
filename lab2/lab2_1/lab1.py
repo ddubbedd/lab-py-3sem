@@ -3,10 +3,9 @@ import csv
 
 a = []
 
-# прописать по PEP8 dosctring и typehiting
 
-
-def write_to_file() -> None:
+def split_into_files() -> None:
+    """Эта функция разбивает исходный файл на два файла"""
     with open('dataset.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:

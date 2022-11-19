@@ -5,6 +5,7 @@ a = []
 
 
 def find_date(year: str) -> str:
+    """Эта функция возвращает название файла с датой от первого до последнего числа"""
     b = []
     max_date = 0
     min_date = 10 ** 10
@@ -23,6 +24,7 @@ def find_date(year: str) -> str:
 
 
 def write_to_file() -> None:
+    """Эта функция записывает данные в файлы, упорядоченные по годам"""
     with open('dataset.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:
