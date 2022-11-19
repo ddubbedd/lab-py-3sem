@@ -3,6 +3,8 @@ import csv
 
 a = []
 
+# прописать по PEP8 dosctring и typehiting
+
 
 def write_to_file() -> None:
     with open('dataset.csv', 'r', newline='') as csvfile:

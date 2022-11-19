@@ -47,6 +47,3 @@ def write_to_file() -> None:
             all_data = a[i]
             writer = csv.writer(file)
             writer.writerow(all_data)
-
-
-write_to_file()

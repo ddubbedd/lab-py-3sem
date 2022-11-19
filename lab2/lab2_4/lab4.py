@@ -13,7 +13,7 @@ def next(path_to_csv: str, count: int) -> Optional[List[str]]:
             return file_reader[count]
 
 
-def find_data1(date: datetime.date) -> list:
+def find_data1(date: datetime.date) -> Optional[List[str]]:
     list1 = []
     with open('dataset1/dataset1.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
@@ -29,7 +29,7 @@ def find_data1(date: datetime.date) -> list:
         return b
 
 
-def find_data2(date: datetime.date) -> list:
+def find_data2(date: datetime.date) -> Optional[List[str]]:
     list1 = []
     list2 = []
     with open('dataset2/X.csv', 'r', newline='') as csvfile:
@@ -50,7 +50,7 @@ def find_data2(date: datetime.date) -> list:
         return b
 
 
-def find_data3(date: datetime.date) -> list:
+def find_data3(date: datetime.date) -> Optional[List[str]]:
     list1 = []
     b = []
     filename = ''
@@ -78,7 +78,7 @@ def find_data3(date: datetime.date) -> list:
         return b
 
 
-def find_data4(date: datetime.date):
+def find_data4(date: datetime.date) -> Optional[List[str]]:
     list1 = []
     b = []
     filename = ''
@@ -121,6 +121,3 @@ def run(path_to_csv: str = os.path.join("/Users/aleksandragorbuncova/PycharmProj
         while count != 50:
             print(*next(path_to_csv, count))
             count += 1
-
-
-run()
