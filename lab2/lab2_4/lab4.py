@@ -15,7 +15,7 @@ def next(path_to_csv: str, count: int) -> Optional[List[str]]:
 
 def find_data1(date: datetime.date) -> Optional[List[str]]:
     list1 = []
-    with open('dataset1/dataset1.csv', 'r', newline='') as csvfile:
+    with open('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab1/dataset.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:
             list1.append(row)
@@ -32,11 +32,11 @@ def find_data1(date: datetime.date) -> Optional[List[str]]:
 def find_data2(date: datetime.date) -> Optional[List[str]]:
     list1 = []
     list2 = []
-    with open('dataset2/X.csv', 'r', newline='') as csvfile:
+    with open('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_1/X.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:
             list1.append(row)
-    with open('dataset2/Y.csv', 'r', newline='') as csvfile:
+    with open('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_1/Y.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:
             list2.append(row)
@@ -54,15 +54,14 @@ def find_data3(date: datetime.date) -> Optional[List[str]]:
     list1 = []
     b = []
     filename = ''
-    path = os.listdir(path="dataset3")
+    path = os.listdir(path="/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_2/dataset")
     for i in range(len(path)):
         if str(path[i])[0:4] == str(date)[0:4]:
-            if str(path[i])[4:6] == str(date)[5:7]:
-                if int(str(path[i])[6:8]) <= int(str(date)[8:10]) <= int(str(path[i])[15:17]):
-                    filename = path[i]
+            filename = path[i]
 
     if filename != '':
-        with open(f"dataset3/{filename}", 'r', newline='') as csvfile:
+        with open(f"/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_2/dataset/{filename}", 'r',
+                  newline='') as csvfile:
             file_reader = csv.reader(csvfile)
             for row in file_reader:
                 list1.append(row)
@@ -82,7 +81,7 @@ def find_data4(date: datetime.date) -> Optional[List[str]]:
     list1 = []
     b = []
     filename = ''
-    all_files = os.listdir(path="dataset4")
+    all_files = os.listdir(path="/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_3/dataset")
 
     if all_files:
         for file in all_files:
@@ -93,7 +92,8 @@ def find_data4(date: datetime.date) -> Optional[List[str]]:
                         break
 
     if filename != '':
-        with open(f"dataset4/{filename}", 'r', newline='') as csvfile:
+        with open(f"/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_3/dataset/{filename}", 'r',
+                  newline='') as csvfile:
             file_reader = csv.reader(csvfile)
             for row in file_reader:
                 list1.append(row)
@@ -109,15 +109,16 @@ def find_data4(date: datetime.date) -> Optional[List[str]]:
         return b
 
 
-def run(path_to_csv: str = os.path.join("/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2")) -> None:
-    date = datetime.date(2010, 12, 12)
-    print(find_data1(date))
-    print(find_data2(date))
-    print(find_data3(date))
-    print(find_data4(date))
-
+def run_next(path_to_csv: str = os.path.join("/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2")):
     with open(path_to_csv + '/dataset.csv', 'r', encoding='utf-8') as csvfile:
         count = 0
         while count != 50:
             print(*next(path_to_csv, count))
             count += 1
+
+
+def run(date=datetime.date(2010, 12, 12)) -> None:
+    print(find_data1(date))
+    print(find_data2(date))
+    print(find_data3(date))
+    print(find_data4(date))

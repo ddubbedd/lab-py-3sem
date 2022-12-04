@@ -25,13 +25,13 @@ def find_date(year: str) -> str:
 
 def write_to_file() -> None:
     """Эта функция записывает данные в файлы, упорядоченные по годам"""
-    with open('dataset.csv', 'r', newline='') as csvfile:
+    with open('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_2/dataset.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:
             a.append(row)
     for i in range(0, len(a)):
         year = a[i][0].split("-")[0]
-        with open(f"dataset/{find_date(year)}.csv", "a", newline="") as file:
+        with open(f"/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_2/dataset/{find_date(year)}.csv", "a", newline="") as file:
             all_data = a[i]
             writer = csv.writer(file)
             writer.writerow(all_data)

@@ -19,7 +19,7 @@ def find_date(iterator: int) -> str:
 
 def write_to_file() -> None:
     """Эта функция записывает данные в файлы, упорядоченные по неделям"""
-    with open('dataset.csv', 'r', newline='') as csvfile:
+    with open('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_3/dataset.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:
             a.append(row)
@@ -44,7 +44,7 @@ def write_to_file() -> None:
             first_year = int(a[i][0].split('-')[0])
             first_month = 1
             file_name = find_date(i)
-        with open(f"dataset/{file_name}.csv", "a", newline="") as file:
+        with open(f"/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_3/dataset/{file_name}.csv", "a", newline="") as file:
             all_data = a[i]
             writer = csv.writer(file)
             writer.writerow(all_data)
