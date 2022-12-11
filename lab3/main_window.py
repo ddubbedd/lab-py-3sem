@@ -4,7 +4,7 @@ import shutil
 
 from PyQt6.QtCore import QSize, Qt
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox
 from PyQt6 import QtWidgets
 
 from lab2.lab2_1 import lab1
@@ -12,13 +12,20 @@ from lab2.lab2_2 import lab2
 from lab2.lab2_3 import lab3
 from lab2.lab2_4 import lab4
 
+stylesheet = """
+    QMainWindow {
+        background-image: url("photo.jpg"); 
+        background-repeat: no-repeat; 
+        background-position: center
+    }
+"""
+
 
 class Window(object):
     def setup(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(530, 500)
-        MainWindow.setStyleSheet(
-            "background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(0, 0, 0, 255), stop:0.19397 rgba(0, 0, 0, 255), stop:0.202312 rgba(122, 97, 0, 255), stop:0.495514 rgba(76, 58, 0, 255), stop:0.504819 rgba(255, 255, 255, 255), stop:0.79 rgba(255, 255, 255, 255), stop:1 rgba(255, 158, 158, 255));")
+        MainWindow.setFixedSize(530, 500)
+        MainWindow.setStyleSheet(stylesheet)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
@@ -85,13 +92,21 @@ class Window(object):
         self.pushButton_5.clicked.connect(self.find_data)
 
     def split_x_y(self):
-        lab1.split_into_files()
+        # lab1.split_into_files()
+        print('ok')
+        ok_window = QMessageBox()
+        ok_window.setWindowTitle('Успешно')
+        ok_window.setText('Разделение на два файла прошло успешно!')
+        ok_window.setIcon(QMessageBox.Icon.Information)
+        ok_window.exec()
 
     def split_year(self):
-        lab2.write_to_file()
+        print('ok')
+        # lab2.write_to_file()
 
     def split_week(self):
-        lab3.write_to_file()
+        print('ok')
+        # lab3.write_to_file()
 
     def find_data(self):
         print(1)
