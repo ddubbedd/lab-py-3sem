@@ -23,9 +23,9 @@ def find_date(year: str) -> str:
     return str(min_date) + '_' + str(max_date)
 
 
-def write_to_file() -> None:
+def write_to_file(filename='/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab1') -> None:
     """Эта функция записывает данные в файлы, упорядоченные по годам"""
-    with open('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_2/dataset.csv', 'r', newline='') as csvfile:
+    with open(filename+'/dataset.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:
             a.append(row)
