@@ -75,7 +75,7 @@ class Window1(QWidget):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslate(MainWindow)
-        self.add_functions()
+        self.addFunctions()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslate(self, MainWindow):
@@ -90,13 +90,13 @@ class Window1(QWidget):
                                                            "по неделям"))
         self.pushButton_5.setText(_translate("MainWindow", "Найти данные по дате"))
 
-    def add_functions(self):
-        self.pushButton_2.clicked.connect(self.split_x_y)
-        self.pushButton_3.clicked.connect(self.split_year)
-        self.pushButton_4.clicked.connect(self.split_week)
-        self.pushButton_5.clicked.connect(self.find_data)
+    def addFunctions(self):
+        self.pushButton_2.clicked.connect(self.splitXY)
+        self.pushButton_3.clicked.connect(self.splitYear)
+        self.pushButton_4.clicked.connect(self.splitWeek)
+        self.pushButton_5.clicked.connect(self.findData)
 
-    def split_x_y(self):
+    def splitXY(self):
         lab1.split_into_files(self.folderpath)
         ok_window = QMessageBox()
         ok_window.setWindowTitle('Успешно')
@@ -104,7 +104,7 @@ class Window1(QWidget):
         ok_window.setIcon(QMessageBox.Icon.Information)
         ok_window.exec()
 
-    def split_year(self):
+    def splitYear(self):
         lab2.write_to_file(self.folderpath)
         ok_window = QMessageBox()
         ok_window.setWindowTitle('Успешно')
@@ -112,7 +112,7 @@ class Window1(QWidget):
         ok_window.setIcon(QMessageBox.Icon.Information)
         ok_window.exec()
 
-    def split_week(self):
+    def splitWeek(self):
         lab3.write_to_file(self.folderpath)
         ok_window = QMessageBox()
         ok_window.setWindowTitle('Успешно')
@@ -120,10 +120,10 @@ class Window1(QWidget):
         ok_window.setIcon(QMessageBox.Icon.Information)
         ok_window.exec()
 
-    def ex_window(self):
+    def exWindow(self, ex):
         window = QMessageBox()
         window.setWindowTitle('Ошибка')
-        window.setText('Неверный ввод даты!')
+        window.setText(ex)
         window.setIcon(QMessageBox.Icon.Warning)
         window.exec()
 
@@ -131,16 +131,25 @@ class Window1(QWidget):
         """Функция для показа окна"""
         self.MainWindow = QtWidgets.QMainWindow()
         self.window = Window2()
-        self.window.setup(self.MainWindow, date)
+        self.window.setup(self.MainWindow, date[0: 2]+'/'+date[2: 4]+'/'+date[4: 8])
         self.MainWindow.show()
 
-    def find_data(self) -> None:
-        text, ok = QInputDialog.getText(self, 'Поиск по дате',
+    def checkDate(self, text):
+        if len(text) == 8 or text.isdigit() != False:
+            if 2008 <= int(text[4: 8]) <= 2022:
+                days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+                if 1 <= int(text[2: 4]) <= 12:
+                    if 1 <= int(text[0: 2]) <= days[int(text[2: 4]) - 1]:
+                        return True
+        return False
+
+    def findData(self) -> None:
+        text, ok = QInputDialog.getText(self, 'Поиск по дате 2008г-2022г',
                                         'Введите дату в формате ДДММГГГГ:')
 
         if ok:
-            if len(text) != 8:
-                self.ex_window()
+            if not self.checkDate(text):
+                self.exWindow('Неверный ввод даты!')
                 return
             else:
                 self.dateFind = text
