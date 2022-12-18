@@ -31,7 +31,7 @@ def write_to_file(filename='/Users/aleksandragorbuncova/PycharmProjects/lab-py-3
             a.append(row)
     for i in range(0, len(a)):
         year = a[i][0].split("-")[0]
-        with open(f"/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_2/dataset/{find_date(year)}.csv", "a", newline="") as file:
+        with open(f"/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetYear/{find_date(year)}.csv", "a", newline="") as file:
             all_data = a[i]
             writer = csv.writer(file)
             writer.writerow(all_data)

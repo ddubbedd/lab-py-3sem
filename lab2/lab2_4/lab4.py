@@ -13,9 +13,9 @@ def next(path_to_csv: str, count: int) -> Optional[List[str]]:
             return file_reader[count]
 
 
-def find_data1(date: datetime.date) -> Optional[List[str]]:
+def find_data1(date: datetime.date, folderPath='/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetAll') -> Optional[List[str]]:
     list1 = []
-    with open('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab1/dataset.csv', 'r', newline='') as csvfile:
+    with open(folderPath + '/dataset.csv', 'r', newline='') as csvfile:
         file_reader = csv.reader(csvfile)
         for row in file_reader:
             list1.append(row)
@@ -117,8 +117,10 @@ def run_next(path_to_csv: str = os.path.join("/Users/aleksandragorbuncova/Pychar
             count += 1
 
 
-def run(date=datetime.date(2010, 12, 12)) -> None:
-    print(find_data1(date))
+def run(date=datetime.date(2009, 1, 1)) -> None:
+    print(find_data1(date, '/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetAll'))
     print(find_data2(date))
     print(find_data3(date))
     print(find_data4(date))
+
+# run()

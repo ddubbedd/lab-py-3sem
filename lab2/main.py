@@ -10,5 +10,4 @@ if __name__ == '__main__':
     lab2.write_to_file()
     lab3.write_to_file()
     lab4.run()
-    lab5.run()
 

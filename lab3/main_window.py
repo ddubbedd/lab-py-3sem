@@ -1,7 +1,13 @@
+import os
+import shutil
 import sys
 
 from PyQt6 import QtWidgets
 
+from lab2.lab2_1 import lab1
+from lab2.lab2_2 import lab2
+from lab2.lab2_3 import lab3
+from lab2.lab2_4 import lab4
 from main_window_class import Window1
 
 stylesheet = """
@@ -25,14 +31,3 @@ def application() -> None:
 
 if __name__ == '__main__':
     application()
-
-    # os.remove('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_1/X.csv')
-    # os.remove('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_1/Y.csv')
-    # shutil.rmtree('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_2/dataset')
-    # os.mkdir('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_2/dataset')
-    # shutil.rmtree('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_3/dataset')
-    # os.mkdir('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_3/dataset')
-    # lab1.split_into_files()
-    # lab2.write_to_file()
-    # lab3.write_to_file()
-    # lab4.run()

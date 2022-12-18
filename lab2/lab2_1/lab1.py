@@ -12,13 +12,13 @@ def split_into_files(filepath='/Users/aleksandragorbuncova/PycharmProjects/lab-p
             a.append(row)
 
     for i in range(0, len(a)):
-        with open('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_1' + '/X.csv', "a",
+        with open('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetXY' + '/X.csv', "a",
                   newline="") as file:
             all_data = [a[i][0]]
             writer = csv.writer(file)
             writer.writerow(all_data)
 
-        with open('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_1' + '/Y.csv', "a",
+        with open('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetXY' + '/Y.csv', "a",
                   newline="") as file:
             all_data = a[i][1:]
             writer = csv.writer(file)

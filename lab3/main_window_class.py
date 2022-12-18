@@ -1,3 +1,6 @@
+import datetime
+import os
+import shutil
 import sys
 
 from PyQt6 import QtCore, QtGui
@@ -64,11 +67,11 @@ class Window1(QWidget):
         self.pushButton_4.setStyleSheet(
             "background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));")
         self.pushButton_4.setObjectName("pushButton_4")
-        self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_5.setGeometry(QtCore.QRect(140, 100, 231, 31))
-        self.pushButton_5.setStyleSheet(
+        self.pushButton_1 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_1.setGeometry(QtCore.QRect(140, 100, 231, 31))
+        self.pushButton_1.setStyleSheet(
             "background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0 rgba(255, 255, 0, 69), stop:0.375 rgba(255, 255, 0, 69), stop:0.423533 rgba(251, 255, 0, 145), stop:0.45 rgba(247, 255, 0, 208), stop:0.477581 rgba(255, 244, 71, 130), stop:0.518717 rgba(255, 218, 71, 130), stop:0.55 rgba(255, 255, 0, 255), stop:0.57754 rgba(255, 203, 0, 130), stop:0.625 rgba(255, 255, 0, 69), stop:1 rgba(255, 255, 0, 69));")
-        self.pushButton_5.setObjectName("pushButton_5")
+        self.pushButton_1.setObjectName("pushButton_5")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -88,15 +91,17 @@ class Window1(QWidget):
                                                            "по годам"))
         self.pushButton_4.setText(_translate("MainWindow", "Датасет\n"
                                                            "по неделям"))
-        self.pushButton_5.setText(_translate("MainWindow", "Найти данные по дате"))
+        self.pushButton_1.setText(_translate("MainWindow", "Найти данные по дате"))
 
     def addFunctions(self):
+        self.pushButton_1.clicked.connect(self.findData)
         self.pushButton_2.clicked.connect(self.splitXY)
         self.pushButton_3.clicked.connect(self.splitYear)
         self.pushButton_4.clicked.connect(self.splitWeek)
-        self.pushButton_5.clicked.connect(self.findData)
 
     def splitXY(self):
+        os.remove('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetXY/X.csv')
+        os.remove('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetXY/Y.csv')
         lab1.split_into_files(self.folderpath)
         ok_window = QMessageBox()
         ok_window.setWindowTitle('Успешно')
@@ -105,6 +110,8 @@ class Window1(QWidget):
         ok_window.exec()
 
     def splitYear(self):
+        shutil.rmtree('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetYear')
+        os.mkdir('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetYear')
         lab2.write_to_file(self.folderpath)
         ok_window = QMessageBox()
         ok_window.setWindowTitle('Успешно')
@@ -113,6 +120,8 @@ class Window1(QWidget):
         ok_window.exec()
 
     def splitWeek(self):
+        shutil.rmtree('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetWeek')
+        os.mkdir('/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetWeek')
         lab3.write_to_file(self.folderpath)
         ok_window = QMessageBox()
         ok_window.setWindowTitle('Успешно')
@@ -131,13 +140,13 @@ class Window1(QWidget):
         """Функция для показа окна"""
         self.MainWindow = QtWidgets.QMainWindow()
         self.window = Window2()
-        self.window.setup(self.MainWindow, date[0: 2]+'/'+date[2: 4]+'/'+date[4: 8])
+        self.window.setup(self.MainWindow, date, self.folderpath)
         self.MainWindow.show()
 
     def checkDate(self, text):
         if len(text) == 8 or text.isdigit() != False:
             if 2008 <= int(text[4: 8]) <= 2022:
-                days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+                days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 17]
                 if 1 <= int(text[2: 4]) <= 12:
                     if 1 <= int(text[0: 2]) <= days[int(text[2: 4]) - 1]:
                         return True
@@ -149,7 +158,7 @@ class Window1(QWidget):
 
         if ok:
             if not self.checkDate(text):
-                self.exWindow('Неверный ввод даты!')
+                self.exWindow('Неверный ввод даты, либо данных за эту дату нет!')
                 return
             else:
                 self.dateFind = text

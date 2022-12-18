@@ -44,7 +44,7 @@ def write_to_file(filename='/Users/aleksandragorbuncova/PycharmProjects/lab-py-3
             first_year = int(a[i][0].split('-')[0])
             first_month = 1
             file_name = find_date(i)
-        with open(f"/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab2/lab2_3/dataset/{file_name}.csv", "a", newline="") as file:
+        with open(f"/Users/aleksandragorbuncova/PycharmProjects/lab-py-3sem/lab3/datasetWeek/{file_name}.csv", "a", newline="") as file:
             all_data = a[i]
             writer = csv.writer(file)
             writer.writerow(all_data)
