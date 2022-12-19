@@ -1,11 +1,9 @@
-import datetime
 import os
 import shutil
-import sys
 
 from PyQt6 import QtCore, QtGui
 from PyQt6 import QtWidgets
-from PyQt6.QtWidgets import QMessageBox, QWidget, QInputDialog, QDialog
+from PyQt6.QtWidgets import QMessageBox, QWidget, QInputDialog
 
 from lab2.lab2_1 import lab1
 from lab2.lab2_2 import lab2
